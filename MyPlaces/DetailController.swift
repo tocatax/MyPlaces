@@ -16,13 +16,24 @@ class DetailController: UIViewController {
     @IBOutlet weak var place_img: UIImageView!
     @IBOutlet weak var name_txt: UILabel!
     @IBOutlet weak var description_txt: UILabel!
+    @IBOutlet weak var discount_txt: UILabel!
+    @IBOutlet weak var image_background: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let place = place {
             name_txt.text = place.name
             description_txt.text = place.description
+            switch place.type {
+            case .generic:
+                discount_txt.isHidden = true
+                image_background.backgroundColor = UIColor(red:0.97, green:0.67, blue:0.09, alpha:1.0)
+            case .touristic:
+                let placeTourist = place as? PlaceTourist
+                discount_txt.text = "-\(placeTourist!.discount_tourist)%"
+                image_background.backgroundColor = UIColor(red:0.32, green:0.64, blue:0.23, alpha:1.0)
+            }
             if(place.image != nil){
                 place_img.image = UIImage(data: place.image!)
             }
@@ -36,7 +47,7 @@ class DetailController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func edit_bt(_ sender: Any) {
         performSegue(withIdentifier: "ShowEditPlace", sender: place)
     }
