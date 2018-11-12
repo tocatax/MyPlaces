@@ -23,11 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let path = Bundle.main.path(forResource: "places", ofType: "json") {
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe) 
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String: Any]] 
-
-                for place in jsonResult! {
-                    //manager.append(place)
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]]
+               
+                for jsonItem in jsonResult! {
+                    //print(jsonItem["name"], jsonItem["description"], jsonItem["image_in"])
+                    let newPlace = Place(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
+                    manager.append(newPlace)
                 }
             } catch {
                 print("NO FILE")
