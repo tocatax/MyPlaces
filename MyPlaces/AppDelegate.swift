@@ -27,9 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]]
                
                 for jsonItem in jsonResult! {
-                    //print(jsonItem["name"], jsonItem["description"], jsonItem["image_in"])
-                    let newPlace = Place(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
-                    manager.append(newPlace)
+                    if(jsonItem["type"] != nil){
+                        let newPlace = PlaceTourist(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, discount_tourist: jsonItem["discount_tourist"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
+                        manager.append(newPlace)
+                    } else {
+                        let newPlace = Place(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
+                        manager.append(newPlace)
+                    }
+
                 }
             } catch {
                 print("NO FILE")
