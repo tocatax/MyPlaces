@@ -68,5 +68,7 @@
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App want to access your location</string>
 </dict>
 </plist>

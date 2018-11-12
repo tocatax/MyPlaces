@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MapKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -19,11 +21,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // creating our own real content we will need to remove this part, of course.
         let manager = PlaceManager.shared
         
-        for place in manager.someTestPlaces {
-            manager.append(place)
+        if let path = Bundle.main.path(forResource: "places", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe) 
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String: Any]] 
+
+                for place in jsonResult! {
+                    //manager.append(place)
+                }
+            } catch {
+                print("NO FILE")
+            }
         }
-        
         return true
     }
+}
 
+struct PlaceItem: Codable {
+    var name: String
+    var description: String
+    var type: String
+    var location: CLLocationCoordinate2D!
+    var image: String
+    
+    init(name: String, description: String, type: String, location: CLLocationCoordinate2D, image: String){
+        self.name = name
+        self.description = description
+        self.type = type
+        self.location = location
+        self.image = image
+    }
 }

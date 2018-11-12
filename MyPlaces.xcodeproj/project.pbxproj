@@ -19,6 +19,8 @@
 		4002513A215E34630068AA4B /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40025139215E34630068AA4B /* PlaceTourist.swift */; };
 		4002513C215E38AF0068AA4B /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4002513B215E38AF0068AA4B /* PlaceManager.swift */; };
 		E25ABFD721811EC0003166E0 /* addModifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25ABFD621811EC0003166E0 /* addModifyController.swift */; };
+		E2CC869C2198D6C700312C06 /* places.json in Resources */ = {isa = PBXBuildFile; fileRef = E2CC869B2198D6C600312C06 /* places.json */; };
+		E2CC869E219A2E3000312C06 /* Place+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CC869D219A2E3000312C06 /* Place+JSON.swift */; };
 		E2EFD079217E6BB900300D1D /* PlaceCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		40025139215E34630068AA4B /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
 		4002513B215E38AF0068AA4B /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
 		E25ABFD621811EC0003166E0 /* addModifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addModifyController.swift; sourceTree = "<group>"; };
+		E2CC869B2198D6C600312C06 /* places.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = places.json; path = ../../../places.json; sourceTree = "<group>"; };
+		E2CC869D219A2E3000312C06 /* Place+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+JSON.swift"; sourceTree = "<group>"; };
 		E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +76,9 @@
 		4002511D215E26790068AA4B /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				E2CC869B2198D6C600312C06 /* places.json */,
 				4002511E215E26790068AA4B /* AppDelegate.swift */,
+				E2CC869D219A2E3000312C06 /* Place+JSON.swift */,
 				40025120215E26790068AA4B /* myPlacesListController.swift */,
 				40025122215E26790068AA4B /* myPlacesMapController.swift */,
 				40025124215E26790068AA4B /* Main.storyboard */,
@@ -166,6 +172,7 @@
 				4002512B215E267A0068AA4B /* LaunchScreen.storyboard in Resources */,
 				40025128215E267A0068AA4B /* Assets.xcassets in Resources */,
 				40025126215E26790068AA4B /* Main.storyboard in Resources */,
+				E2CC869C2198D6C700312C06 /* places.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +186,7 @@
 				4002513A215E34630068AA4B /* PlaceTourist.swift in Sources */,
 				40025133215E2DBE0068AA4B /* DetailController.swift in Sources */,
 				E2EFD079217E6BB900300D1D /* PlaceCellItem.swift in Sources */,
+				E2CC869E219A2E3000312C06 /* Place+JSON.swift in Sources */,
 				40025123215E26790068AA4B /* myPlacesMapController.swift in Sources */,
 				4002511F215E26790068AA4B /* AppDelegate.swift in Sources */,
 				4002513C215E38AF0068AA4B /* PlaceManager.swift in Sources */,
