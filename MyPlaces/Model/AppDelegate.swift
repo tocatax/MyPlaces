@@ -43,19 +43,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
-struct PlaceItem: Codable {
-    var name: String
-    var description: String
-    var type: String
-    var location: CLLocationCoordinate2D!
-    var image: String
-    
-    init(name: String, description: String, type: String, location: CLLocationCoordinate2D, image: String){
-        self.name = name
-        self.description = description
-        self.type = type
-        self.location = location
-        self.image = image
-    }
-}
