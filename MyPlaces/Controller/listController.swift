@@ -75,9 +75,11 @@ class FirstViewController: UITableViewController {
                 }
                 cell.colorBarType.backgroundColor = UIColor(red:0.32, green:0.64, blue:0.23, alpha:1.0)
         }
-print(place.image)
+
         if(place.image != nil){
             cell.place_img.image = UIImage(data: place.image!)
+        }else{
+            cell.place_img.image = nil
         }
 
         return cell

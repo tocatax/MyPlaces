@@ -49,17 +49,17 @@ class addModifyContoller: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func save_place(_ sender: Any) {
-        
+print(1)
         if (name_txt.text == "") {
             name_txt.backgroundColor = UIColor(red:0.98, green:0.91, blue:0.91, alpha:1.0)
             return
         }else{
             name_txt.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:1.0)
         }
-        
+print(2)
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-    
+print(3)
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
@@ -69,16 +69,18 @@ class addModifyContoller: UIViewController, CLLocationManagerDelegate {
             self.present(noGpsMessage, animated: true, completion: nil)
             return
         }
-        
+print(4)
         guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+print(5)
         locationManager.stopUpdatingLocation()
-
-print(place)
+print(6)
         if (place != nil) { manager.remove(place!)}
+print(7)
         let newType = touristic_sw.isOn ? Place.PlaceType.touristic : Place.PlaceType.generic
         newPlace = Place(type: newType, name: name_txt.text!, descript: description_txt.text!, location: locValue, discount: discount_txt.text!, image_in: nil)
+print(8)
         manager.append(newPlace!)
-    
+print(9)
         if let jsonData = manager.jsonFrom(places: manager.places) {
             
             let docsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -91,11 +93,17 @@ print(place)
                 print("Error guardando datos")
             }
         }
-    
+print(10)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelar_bt(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func delete_place(_ sender: Any) {
+        manager.remove(place!)
         dismiss(animated: true, completion: nil)
     }
     
