@@ -8,53 +8,39 @@
 
 import MapKit
 
-struct PlaceItem: Codable {
-    var name: String
-    var description: String
-    var type: String
-    var location: CLLocationCoordinate2D!
-    var image: String
+extension Place: MKAnnotation {
     
-    init(name: String, description: String, type: String, location: CLLocationCoordinate2D, image: String){
-        self.name = name
-        self.description = description
-        self.type = type
-        self.location = location
-        self.image = image
-    }
-}
-
-extension PlaceItem {
-    
-    enum PlaceItemKeys: String, CodingKey {
-        case name = "name"
-        case description = "description"
+    enum PlaceKeys: String, CodingKey {
         case type = "type"
+        case name = "name"
+        case descript = "descript"
         case latitude = "latitude"
         case longitude = "longitude"
+        case discount = "discount"
         case image = "image"
     }
     
-    init(from: Decoder) throws {
-        let container = try from.container(keyedBy: PlaceItemKeys.self)
-        let name = try container.decode(String.self, forKey: .name)
-        let description = try container.decode(String.self, forKey: .description)
-        let type = try container.decode(String.self, forKey: .type)
-        let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
-        let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
-        let location = try CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let image = try container.decode(String.self, forKey: .image)
-        
-        self.init(name: name, description: description, type: type, location: location, image: image)
-    }
-    
+    //Conversió de Class a JSON
     func encode(to: Encoder) throws {
-        var container = to.container(keyedBy: PlaceItemKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(description, forKey: .description)
+        var container = to.container(keyedBy: PlaceKeys.self)
         try container.encode(type, forKey: .type)
+        try container.encode(name, forKey: .name)
+        try container.encode(descript, forKey: .descript)
         try container.encode(location.latitude, forKey: .latitude)
         try container.encode(location.longitude, forKey: .longitude)
+        try container.encode(discount, forKey: .discount)
         try container.encode(image, forKey: .image)
+        switch type {
+            case .generic: try container.encode(PlaceType.generic, forKey: .type)
+            case .touristic: try container.encode(PlaceType.touristic, forKey: .type)
+        }
+    }
+    
+    var coordinate: CLLocationCoordinate2D {
+        return location
+    }
+    
+    var title: String? {
+        return name
     }
 }

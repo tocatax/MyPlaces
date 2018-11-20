@@ -16,11 +16,9 @@
 		40025133215E2DBE0068AA4B /* detailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40025132215E2DBE0068AA4B /* detailController.swift */; };
 		40025136215E2EA90068AA4B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40025135215E2EA90068AA4B /* MapKit.framework */; };
 		40025138215E31DB0068AA4B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40025137215E31DB0068AA4B /* Place.swift */; };
-		4002513A215E34630068AA4B /* PlaceTourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40025139215E34630068AA4B /* PlaceTourist.swift */; };
 		4002513C215E38AF0068AA4B /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4002513B215E38AF0068AA4B /* PlaceManager.swift */; };
 		E25ABFD721811EC0003166E0 /* addModifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25ABFD621811EC0003166E0 /* addModifyController.swift */; };
 		E2CC869E219A2E3000312C06 /* Place+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CC869D219A2E3000312C06 /* Place+JSON.swift */; };
-		E2CC86A9219B93B900312C06 /* places.json in Resources */ = {isa = PBXBuildFile; fileRef = E2CC86A8219B93B800312C06 /* places.json */; };
 		E2EFD079217E6BB900300D1D /* PlaceCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,11 +34,9 @@
 		40025132215E2DBE0068AA4B /* detailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailController.swift; sourceTree = "<group>"; };
 		40025135215E2EA90068AA4B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		40025137215E31DB0068AA4B /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		40025139215E34630068AA4B /* PlaceTourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTourist.swift; sourceTree = "<group>"; };
 		4002513B215E38AF0068AA4B /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
 		E25ABFD621811EC0003166E0 /* addModifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addModifyController.swift; sourceTree = "<group>"; };
 		E2CC869D219A2E3000312C06 /* Place+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+JSON.swift"; sourceTree = "<group>"; };
-		E2CC86A8219B93B800312C06 /* places.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places.json; sourceTree = "<group>"; };
 		E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +77,6 @@
 				E2CC869F219B7D0F00312C06 /* Controller */,
 				40025127215E267A0068AA4B /* Assets.xcassets */,
 				4002512C215E267A0068AA4B /* Info.plist */,
-				E2CC86A8219B93B800312C06 /* places.json */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -120,7 +115,6 @@
 				4002511E215E26790068AA4B /* AppDelegate.swift */,
 				40025137215E31DB0068AA4B /* Place.swift */,
 				E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */,
-				40025139215E34630068AA4B /* PlaceTourist.swift */,
 				4002513B215E38AF0068AA4B /* PlaceManager.swift */,
 				E2CC869D219A2E3000312C06 /* Place+JSON.swift */,
 			);
@@ -196,7 +190,6 @@
 				4002512B215E267A0068AA4B /* LaunchScreen.storyboard in Resources */,
 				40025128215E267A0068AA4B /* Assets.xcassets in Resources */,
 				40025126215E26790068AA4B /* Main.storyboard in Resources */,
-				E2CC86A9219B93B900312C06 /* places.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +200,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4002513A215E34630068AA4B /* PlaceTourist.swift in Sources */,
 				40025133215E2DBE0068AA4B /* detailController.swift in Sources */,
 				E2EFD079217E6BB900300D1D /* PlaceCellItem.swift in Sources */,
 				E2CC869E219A2E3000312C06 /* Place+JSON.swift in Sources */,

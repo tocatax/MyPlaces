@@ -64,16 +64,18 @@ class FirstViewController: UITableViewController {
         // We ask our table for a reusable cell. Then we set its basic details and return it.
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCellItem", for: indexPath) as! PlaceCellItem
         cell.name_txt.text = place.name
-        cell.description_txt.text = place.description
+        cell.description_txt.text = place.descript
+        cell.discount_txt.text = ""
         switch place.type {
             case .generic:
-                cell.discount_txt.text = ""
                 cell.colorBarType.backgroundColor = UIColor(red:0.97, green:0.67, blue:0.09, alpha:1.0)
             case .touristic:
-                let placeTourist = place as? PlaceTourist
-                cell.discount_txt.text = "-\(placeTourist!.discount_tourist)%"
+                if(place.discount.count > 0){
+                    cell.discount_txt.text = "-\(place.discount)%"
+                }
                 cell.colorBarType.backgroundColor = UIColor(red:0.32, green:0.64, blue:0.23, alpha:1.0)
         }
+print(place.image)
         if(place.image != nil){
             cell.place_img.image = UIImage(data: place.image!)
         }

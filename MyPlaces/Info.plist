@@ -69,6 +69,8 @@
 	<key>UISupportsDocumentBrowser</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App want to access your location</string>
+	<string>La App quiere accedr al tu GPS</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>La App quiere accedr al tu GPS</string>
 </dict>
 </plist>

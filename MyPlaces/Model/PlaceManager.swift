@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 // Do you see those MARK lines there in the code? They do nothing (of course, they are comments
 // after all). But that special syntax let you define some nice sections in the header. Have a look
@@ -35,7 +36,7 @@ class PlaceManager {
     // use some other data structure, we'll only need to change the implementation for the methods
     // below, but all instances in our project calling methods in PlaceManager won't be affected,
     // because using an array or something else is just a private detail.
-    private var places = [Place]()
+    var places = [Place]()
     
     // Inserts a new place into list of places managed by PlaceManager.
     func append(_ place: Place) {
@@ -76,26 +77,64 @@ class PlaceManager {
         places = places.filter {$0.id != place.id}
     }
     
-    // MARK: - Only for demo purposes
+    func jsonFrom(places: [Place]) -> Data? {
+        var jsonData: Data? = nil
+        let jsonEncoder = JSONEncoder()
+        do {
+            jsonData = try jsonEncoder.encode(places)
+        } catch {
+            return nil
+        }
+        return jsonData
+    }
     
-    let someTestPlaces = [
-        Place(name: "UOC 22@",
-              //description: "Seu de la Universitat Oberta de Catalunya",
-            description: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.",
+    func placesFrom(jsonData: Data) -> [Place] {
+        let jsonDecoder = JSONDecoder()
+        let places: [Place]
+        do {
+            places = try jsonDecoder.decode([Place].self, from: jsonData)
+        } catch {
+            return []
+        }
+        return places
+    }
+    
+    // MARK: - Only for demo purposes
+    let TestPlaces = [
+        Place(
+            type: .generic,
+            name: "UOC 22@",
+            descript: "Seu de la Universitat Oberta de Catalunya. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.  Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.",
+            location: CLLocationCoordinate2D(latitude: 41.406574, longitude: 2.194534),
+            discount: "",
             image_in: UIImage(named: "uoc")?.pngData()),
-        Place(name: "Rostisseria Lolita",
-              description: "Els millors pollastres de Sant Cugat",
-              image_in: UIImage(named: "lolita")?.pngData()),
-        Place(name: "CIFO L'Hospitalet",
-              description: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
-              image_in: UIImage(named: "cifo")?.pngData()),
-        PlaceTourist(name: "CosmoCaixa",
-                     description: "Museu de la Ciència de Barcelona",
-                     discount_tourist: "50",
-                     image_in: UIImage(named: "cosmocaixa")?.pngData()),
-        PlaceTourist(name: "Park Güell",
-                     description: "Obra d'Antoni Gaudí a Barcelona",
-                     discount_tourist: "10",
-                     image_in: UIImage(named: "park-guell")?.pngData())
+        Place(
+            type: .generic,
+            name: "Rostisseria Lolita",
+            descript: "Els millors pollastres de Sant Cugat",
+            location: CLLocationCoordinate2D(latitude: 41.482236, longitude: 2.091173),
+            discount: "",
+            image_in: UIImage(named: "lolita")?.pngData()),
+        Place(
+            type: .generic,
+            name: "CIFO L'Hospitalet",
+            descript: "Seu del Centre d'Innovació i Formació per a l'Ocupació",
+            location: CLLocationCoordinate2D(latitude: 41.358643, longitude: 2.114072),
+            discount: "",
+            image_in: UIImage(named: "cifo")?.pngData()),
+        Place(
+            type: .touristic,
+            name: "CosmoCaixa",
+            descript: "Museu de la Ciència de Barcelon",
+            location: CLLocationCoordinate2D(latitude: 41.413092, longitude: 2.131416),
+            discount: "50",
+            image_in: UIImage(named: "cosmocaixa")?.pngData()),
+        Place(
+            type: .touristic,
+            name: "Park Güell",
+            descript: "Obra d'Antoni Gaudí a Barcelona",
+            location: CLLocationCoordinate2D(latitude: 41.413236, longitude: 2.152848),
+            discount: "20",
+            image_in: UIImage(named: "park-guell")?.pngData())
     ]
 }
