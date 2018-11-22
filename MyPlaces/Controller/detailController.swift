@@ -22,6 +22,9 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        image_background.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        discount_txt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
         if let place = place {
             name_txt.text = place.name
             description_txt.text = place.descript

@@ -19,7 +19,15 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         //CASA: 41,603073 - 2,620441
         
-        let region = MKCoordinateRegion(center: manager.places[4].coordinate, latitudinalMeters: 15_000, longitudinalMeters: 15_000)
+        let region = MKCoordinateRegion(center: manager.places[0].coordinate, latitudinalMeters: 15_000, longitudinalMeters: 15_000)
+        mapView.setRegion(region, animated: true)
+        mapView.addAnnotations(manager.places)
+        mapView.showsUserLocation = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        let region = MKCoordinateRegion(center: manager.places[0].coordinate, latitudinalMeters: 15_000, longitudinalMeters: 15_000)
         mapView.setRegion(region, animated: true)
         mapView.addAnnotations(manager.places)
         mapView.showsUserLocation = true

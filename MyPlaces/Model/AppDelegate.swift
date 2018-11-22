@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         do {
             let jsonData = try Data(contentsOf: filePath)
-            print(jsonData.count)
             if(jsonData.count > 0){
                 let places = manager.placesFrom(jsonData: jsonData)
                 for place in places {
@@ -45,30 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 manager.append(place)
             }
         }
-        
-        /********************************
-         Primera versió de la carrega de dades desde el json.
-         Deixo el codi aquí comentat pq el puguis revisar i dir-me si seria una solució vàlida/òptima
-        *******************************
-        if let path = Bundle.main.path(forResource: "places", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]]
-               
-                for jsonItem in jsonResult! {
-                    if(jsonItem["type"] != nil){
-                        let newPlace = PlaceTourist(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, discount: jsonItem["discount"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
-                        manager.append(newPlace)
-                    } else {
-                        let newPlace = Place(name: jsonItem["name"] as! String, description: jsonItem["description"] as! String, image_in: UIImage(named: jsonItem["image_in"] as! String)?.pngData())
-                        manager.append(newPlace)
-                    }
-                }
-            } catch {
-                  print("NO FILE")
-            }
-        }
-        */
 
         return true
     }
