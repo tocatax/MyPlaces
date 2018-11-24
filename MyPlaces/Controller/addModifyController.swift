@@ -12,7 +12,9 @@ import MapKit
 class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
 
     let manager = PlaceManager.shared
+    let imagePicker = UIImagePickerController()
     var locationManager = CLLocationManager()
+    var coordinates = CLLocationCoordinate2D()
     var newPlace: Place!
     var place: Place?
     
@@ -23,26 +25,32 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var touristic_sw: UISwitch!
     @IBOutlet weak var delete_place_bt: UIButton!
     
-    let imagePicker = UIImagePickerController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imagePicker.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
+        imagePicker.delegate = self      
         
-        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        } else {
+            let noGpsMessage = UIAlertController(title: "Atención!", message: "Debe tener activado el GPS para poder guardar una localización", preferredStyle: .alert)
+            noGpsMessage.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+            self.present(noGpsMessage, animated: true, completion: nil)
+            return
+        }
+
         //Afegim un avisador pq quan piquem fora els textfield amagi el teclat
         let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardAction))
         view.addGestureRecognizer(hideKeyboard)
         
-        // Moure la vista quan surt el tecalt
+        // Moure la vista quan surt el teclat
         NotificationCenter.default.addObserver(self, selector: #selector(addModifyContoller.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addModifyContoller.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         
         if let place = place {
+            locationManager.stopUpdatingLocation()
             if(place.image != nil){
                 place_img.image = UIImage(data: place.image!)
             }
@@ -53,27 +61,23 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
                 discount_txt.isEnabled = true
                 discount_txt.text = place.discount
             }
+            coordinates = place.coordinate
             delete_place_bt.isHidden = false
         }else{
+            guard let coordinate = locationManager.location?.coordinate else { return }
+            coordinates = coordinate
+            locationManager.stopUpdatingLocation()
             delete_place_bt.isHidden = true
         }
     }
 
+    @IBAction func unwindToAddModifyController(_ sender: UIStoryboardSegue){}
+    
     @IBAction func isTouristic(_ sender: UISwitch) {
         discount_txt.isEnabled = sender.isOn
     }
     
     @IBAction func save_place(_ sender: Any) {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.startUpdatingLocation()
-        } else {
-            let noGpsMessage = UIAlertController(title: "Atención!", message: "Debe teer activado el GPS para poder guardar una localización", preferredStyle: .alert)
-            noGpsMessage.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
-            self.present(noGpsMessage, animated: true, completion: nil)
-            return
-        }
-        
         if (name_txt.text == "") {
             name_txt.backgroundColor = UIColor(red:0.98, green:0.91, blue:0.91, alpha:1.0)
             return
@@ -83,31 +87,24 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
 
         let image = place_img.image != nil ? place_img.image!.pngData() : nil
         
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
-        locationManager.stopUpdatingLocation()
-        
         if (place != nil) { manager.remove(place!)}
         
         let newType = touristic_sw.isOn ? Place.PlaceType.touristic : Place.PlaceType.generic
-        newPlace = Place(type: newType, name: name_txt.text!, descript: description_txt.text!, location: locValue, discount: discount_txt.text!, image_in: image)
+        newPlace = Place(type: newType, name: name_txt.text!, descript: description_txt.text!, location: coordinates, discount: discount_txt.text!, image_in: image)
         manager.append(newPlace!)
         saveToFile()
         performSegue(withIdentifier: "unwindToList", sender: nil)
     }
-    
     
     @IBAction func change_img_bt(_ sender: Any) {
         let alert = UIAlertController(title: "Seleccione imagen", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
             self.openCamera()
         }))
-        
         alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
             self.openGallary()
         }))
-        
         alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
-        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -142,6 +139,10 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
+    }
+    
+    @IBAction func getLocation(_ sender: Any) {
+        performSegue(withIdentifier: "GetLocation", sender: place)
     }
     
     //Funcionalitats per a obrir i sel.leccionar una fot desde càmara o galeria de fotos.

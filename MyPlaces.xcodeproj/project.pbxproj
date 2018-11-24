@@ -18,6 +18,7 @@
 		40025138215E31DB0068AA4B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40025137215E31DB0068AA4B /* Place.swift */; };
 		4002513C215E38AF0068AA4B /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4002513B215E38AF0068AA4B /* PlaceManager.swift */; };
 		E25ABFD721811EC0003166E0 /* addModifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25ABFD621811EC0003166E0 /* addModifyController.swift */; };
+		E25F8F5221A75A2D00F37CF0 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F8F5121A75A2D00F37CF0 /* LocationController.swift */; };
 		E2CC869E219A2E3000312C06 /* Place+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CC869D219A2E3000312C06 /* Place+JSON.swift */; };
 		E2EFD079217E6BB900300D1D /* PlaceCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +36,9 @@
 		40025135215E2EA90068AA4B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		40025137215E31DB0068AA4B /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4002513B215E38AF0068AA4B /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
-		E25ABFD621811EC0003166E0 /* addModifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addModifyController.swift; sourceTree = "<group>"; };
+		E25ABFD621811EC0003166E0 /* addModifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addModifyController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E25F8F5121A75A2D00F37CF0 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		E25F8F5321A8B49500F37CF0 /* casa.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = casa.gpx; path = ../../casa.gpx; sourceTree = "<group>"; };
 		E2CC869D219A2E3000312C06 /* Place+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+JSON.swift"; sourceTree = "<group>"; };
 		E2EFD078217E6BB900300D1D /* PlaceCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +58,7 @@
 		40025112215E26790068AA4B = {
 			isa = PBXGroup;
 			children = (
+				E25F8F5321A8B49500F37CF0 /* casa.gpx */,
 				4002511D215E26790068AA4B /* MyPlaces */,
 				4002511C215E26790068AA4B /* Products */,
 				40025134215E2EA90068AA4B /* Frameworks */,
@@ -92,10 +96,11 @@
 		E2CC869F219B7D0F00312C06 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E25ABFD621811EC0003166E0 /* addModifyController.swift */,
-				40025132215E2DBE0068AA4B /* detailController.swift */,
 				40025120215E26790068AA4B /* listController.swift */,
 				40025122215E26790068AA4B /* mapController.swift */,
+				40025132215E2DBE0068AA4B /* detailController.swift */,
+				E25ABFD621811EC0003166E0 /* addModifyController.swift */,
+				E25F8F5121A75A2D00F37CF0 /* LocationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				4002513C215E38AF0068AA4B /* PlaceManager.swift in Sources */,
 				40025121215E26790068AA4B /* listController.swift in Sources */,
 				E25ABFD721811EC0003166E0 /* addModifyController.swift in Sources */,
+				E25F8F5221A75A2D00F37CF0 /* LocationController.swift in Sources */,
 				40025138215E31DB0068AA4B /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,27 +9,38 @@
 import UIKit
 import MapKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, MKMapViewDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
     let manager = PlaceManager.shared
     var locationManager = CLLocationManager()
+    var placeSelected: Place?
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //CASA: 41,603073 - 2,620441
         
-        let region = MKCoordinateRegion(center: manager.places[0].coordinate, latitudinalMeters: 15_000, longitudinalMeters: 15_000)
-        mapView.setRegion(region, animated: true)
-        mapView.addAnnotations(manager.places)
-        mapView.showsUserLocation = true
+        //CASA: 41,603073 - 2,620441
+        mapView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        let region = MKCoordinateRegion(center: manager.places[0].coordinate, latitudinalMeters: 15_000, longitudinalMeters: 15_000)
-        mapView.setRegion(region, animated: true)
+        
         mapView.addAnnotations(manager.places)
         mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetailFromMap" {
+            if let dc = segue.destination as? DetailController {
+                dc.place = placeSelected
+            }
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        placeSelected = manager.places.filter({$0.name == view.annotation?.title}).first
+        performSegue(withIdentifier: "ShowDetailFromMap", sender: view.annotation)
     }
 }
