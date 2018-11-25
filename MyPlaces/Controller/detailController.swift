@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailController: UIViewController {
     
@@ -18,12 +19,15 @@ class DetailController: UIViewController {
     @IBOutlet weak var description_txt: UILabel!
     @IBOutlet weak var discount_txt: UILabel!
     @IBOutlet weak var image_background: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
         image_background.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         discount_txt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
         
         if let place = place {
             name_txt.text = place.name
@@ -42,7 +46,10 @@ class DetailController: UIViewController {
             if(place.image != nil){
                 place_img.image = UIImage(data: place.image!)
             }
-        }       
+            let Region = MKCoordinateRegion(center: place.location, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
+            mapView.setRegion(Region, animated: true)
+            mapView.addAnnotation(place)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -18,6 +18,7 @@ class LocationController: UIViewController, UINavigationControllerDelegate, CLLo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         locationManager.delegate = self
@@ -55,7 +56,7 @@ class LocationController: UIViewController, UINavigationControllerDelegate, CLLo
     
     @objc func handleTap(_ gestureReconizer: UILongPressGestureRecognizer) {
         let location = gestureReconizer.location(in: mapView)
-        coordinates = mapView.convert(location,toCoordinateFrom: mapView)
+        coordinates = mapView.convert(location, toCoordinateFrom: mapView)
         annotation.coordinate = coordinates
         mapView.addAnnotation(annotation)
     }

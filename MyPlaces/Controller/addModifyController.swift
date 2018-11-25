@@ -15,20 +15,30 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     let imagePicker = UIImagePickerController()
     var locationManager = CLLocationManager()
     var coordinates = CLLocationCoordinate2D()
+    var annotation = MKPointAnnotation()
     var newPlace: Place!
     var place: Place?
     
     @IBOutlet weak var place_img: UIImageView!
+    @IBOutlet weak var mapView_bt: UIButton!
     @IBOutlet weak var name_txt: UITextField!
     @IBOutlet weak var description_txt: UITextView!
     @IBOutlet weak var discount_txt: UITextField!
     @IBOutlet weak var touristic_sw: UISwitch!
     @IBOutlet weak var delete_place_bt: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var foto_lbl: UILabel!
+    @IBOutlet weak var localizacion_lbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imagePicker.delegate = self      
+        place_img.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
+        mapView_bt.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
+        foto_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        localizacion_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        imagePicker.delegate = self
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -48,7 +58,6 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         NotificationCenter.default.addObserver(self, selector: #selector(addModifyContoller.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addModifyContoller.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        
         if let place = place {
             locationManager.stopUpdatingLocation()
             if(place.image != nil){
@@ -63,11 +72,18 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
             }
             coordinates = place.coordinate
             delete_place_bt.isHidden = false
+            let Region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
+            mapView.setRegion(Region, animated: true)
+            mapView.addAnnotation(place)
         }else{
+            delete_place_bt.isHidden = true
             guard let coordinate = locationManager.location?.coordinate else { return }
             coordinates = coordinate
             locationManager.stopUpdatingLocation()
-            delete_place_bt.isHidden = true
+            let Region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
+            mapView.setRegion(Region, animated: true)
+            annotation.coordinate = coordinates
+            mapView.addAnnotation(annotation)
         }
     }
 
