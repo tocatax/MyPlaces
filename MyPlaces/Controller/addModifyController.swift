@@ -30,15 +30,8 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var foto_lbl: UILabel!
     @IBOutlet weak var localizacion_lbl: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        place_img.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
-        mapView_bt.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
-        foto_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        localizacion_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        
-        imagePicker.delegate = self
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -49,6 +42,18 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
             self.present(noGpsMessage, animated: true, completion: nil)
             return
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        place_img.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
+        mapView_bt.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
+        foto_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        localizacion_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        imagePicker.delegate = self
 
         //Afegim un avisador pq quan piquem fora els textfield amagi el teclat
         let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardAction))
@@ -144,11 +149,11 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         description_txt.endEditing(true)
         discount_txt.endEditing(true)
     }
-    
+
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height - 80
+                self.view.frame.origin.y -= keyboardSize.height - 200
             }
         }
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 @UIApplicationMain
 
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let manager = PlaceManager.shared
+        
+        FirebaseApp.configure()
         
         // Funció per a llegir les dade de l'arxiu json
         let docsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

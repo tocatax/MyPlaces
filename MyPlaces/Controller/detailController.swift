@@ -24,6 +24,7 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         mapView.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
         image_background.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         discount_txt.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]

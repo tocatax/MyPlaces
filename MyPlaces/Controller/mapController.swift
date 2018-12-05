@@ -20,6 +20,7 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         //CASA: 41,603073 - 2,620441
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         mapView.delegate = self
     }
     

@@ -17,6 +17,7 @@ class FirstViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
@@ -40,6 +41,8 @@ class FirstViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let place = PlaceManager.shared.itemAt(position: indexPath.item)!
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCellItem", for: indexPath) as! PlaceCellItem
+        
+        cell.backgroundColor = .clear
         cell.name_txt.text = place.name
         cell.description_txt.text = place.descript
         cell.discount_txt.text = ""
