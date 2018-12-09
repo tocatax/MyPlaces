@@ -19,7 +19,7 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //CASA: 41,603073 - 2,620441
+        // CASA: 41,603073 · 2,620441
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         mapView.delegate = self
     }

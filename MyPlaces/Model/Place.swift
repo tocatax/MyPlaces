@@ -58,7 +58,7 @@ class Place: NSObject, Codable {
         self.image = image_in
     }
     
-    //Conversio de JSON a CLASS
+    // Conversio de JSON a CLASS
     required convenience init(from: Decoder) throws {
         let container = try from.container(keyedBy: PlaceKeys.self)
         var type = try container.decode(PlaceType.self, forKey: .type)

@@ -20,7 +20,7 @@ extension Place: MKAnnotation {
         case image = "image"
     }
     
-    //Conversió de Class a JSON
+    // Conversió de Class a JSON
     func encode(to: Encoder) throws {
         var container = to.container(keyedBy: PlaceKeys.self)
         try container.encode(type, forKey: .type)

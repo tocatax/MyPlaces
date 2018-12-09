@@ -92,6 +92,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
 
+    
     @IBAction func unwindToAddModifyController(_ sender: UIStoryboardSegue){}
     
     @IBAction func isTouristic(_ sender: UISwitch) {
@@ -117,6 +118,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         performSegue(withIdentifier: "unwindToList", sender: nil)
     }
     
+    // Popup per sel.leccionar foto desde càmara o galeria
     @IBAction func change_img_bt(_ sender: Any) {
         let alert = UIAlertController(title: "Seleccione imagen", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
@@ -133,6 +135,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         dismiss(animated: true, completion: nil)
     }
     
+    // Popup per confirmar i eliminar una place
     @IBAction func delete_place(_ sender: Any) {
         let deletePlaceMessage = UIAlertController(title: "Atención!", message: "¿Seguro que quiere eliminar este sitio?", preferredStyle: .alert)
         deletePlaceMessage.addAction(UIAlertAction(title: "Eliminar", style: .destructive, handler: {( action: UIAlertAction!) in
@@ -166,19 +169,20 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         performSegue(withIdentifier: "GetLocation", sender: place)
     }
     
-    //Funcionalitats per a obrir i sel.leccionar una fot desde càmara o galeria de fotos.
+    // Funció per a obrir i sel.leccionar una foto desde càmara
     func openCamera() {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)) {
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)) {
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         } else {
-            let alert  = UIAlertController(title: "Atención!", message: "No tiene cámara", preferredStyle: .alert)
+            let alert  = UIAlertController(title: "Atención!", message: "No tiene permiso para usar la cámara", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
     
+    // Funció per a obrir la galeria de fotos
     func openGallary() {
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
@@ -197,6 +201,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Guardar l'array de places a l'arxiu JSON
     func saveToFile(){
         if let jsonData = manager.jsonFrom(places: manager.places) {
             
