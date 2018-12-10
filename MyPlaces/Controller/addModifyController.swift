@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let manager = PlaceManager.shared
     let imagePicker = UIImagePickerController()
@@ -29,6 +29,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var foto_lbl: UILabel!
     @IBOutlet weak var localizacion_lbl: UILabel!
+    @IBOutlet weak var descPlaceholder: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -47,6 +48,9 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //discount_txt.delegate = self
+        description_txt.delegate = self
+        
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         place_img.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
         mapView_bt.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
@@ -64,6 +68,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         NotificationCenter.default.addObserver(self, selector: #selector(addModifyContoller.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if let place = place {
+            if (place.descript != "") { descPlaceholder.isHidden = true}
             locationManager.stopUpdatingLocation()
             if(place.image != nil){
                 place_img.image = UIImage(data: place.image!)
@@ -91,13 +96,35 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
             mapView.addAnnotation(annotation)
         }
     }
-
     
     @IBAction func unwindToAddModifyController(_ sender: UIStoryboardSegue){}
     
     @IBAction func isTouristic(_ sender: UISwitch) {
         discount_txt.isEnabled = sender.isOn
     }
+    
+    // TextView DELEGATE
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        descPlaceholder.isHidden = true
+        return true
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            descPlaceholder.isHidden = false
+        }
+    }
+    
+    // TextFiled DELEGATE
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//print(textField.text)
+//        if let newtxt = Int(textField.text!), newtxt <= 100 {
+//print(newtxt)
+//            discount_txt.text = "\(newtxt)"
+//        }else{
+//            discount_txt.text = "0"
+//        }
+//        return true
+//    }
     
     @IBAction func save_place(_ sender: Any) {
         if (name_txt.text == "") {

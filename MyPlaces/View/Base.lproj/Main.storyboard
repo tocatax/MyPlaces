@@ -56,10 +56,32 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xee-j5-MTT">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E6-5v-c2k">
+                                <rect key="frame" x="10" y="74" width="34" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="UhC-NF-OUF"/>
+                                    <constraint firstAttribute="height" constant="34" id="j2h-Ub-xsb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="◉">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="17"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="userLocationBt:" destination="hxu-bW-Gym" eventType="touchUpInside" id="aUh-II-5G7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7E6-5v-c2k" firstAttribute="leading" secondItem="sLi-bL-SIk" secondAttribute="leading" constant="10" id="45N-sB-0SM"/>
                             <constraint firstItem="sLi-bL-SIk" firstAttribute="trailing" secondItem="xee-j5-MTT" secondAttribute="trailing" id="Cqa-gd-2Xv"/>
+                            <constraint firstItem="7E6-5v-c2k" firstAttribute="top" secondItem="sLi-bL-SIk" secondAttribute="top" constant="10" id="Pgq-B8-gNZ"/>
                             <constraint firstItem="xee-j5-MTT" firstAttribute="top" secondItem="sLi-bL-SIk" secondAttribute="top" id="SiS-SA-QJA"/>
                             <constraint firstItem="xee-j5-MTT" firstAttribute="leading" secondItem="sLi-bL-SIk" secondAttribute="leading" id="YId-xV-Cls"/>
                             <constraint firstItem="sLi-bL-SIk" firstAttribute="bottom" secondItem="xee-j5-MTT" secondAttribute="bottom" id="d4W-xA-oqX"/>
@@ -107,7 +129,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccionar foto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73P-xK-Vi0">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73P-xK-Vi0">
                                 <rect key="frame" x="10" y="146" width="169" height="18"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -140,10 +162,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seleccionar localización" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmH-mZ-UII">
-                                <rect key="frame" x="196.5" y="147" width="168.5" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localización" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmH-mZ-UII">
+                                <rect key="frame" x="196.5" y="146" width="168.5" height="18"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -181,7 +203,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fww-O8-K6R">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fww-O8-K6R">
                                 <rect key="frame" x="10" y="192" width="355" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -260,6 +282,12 @@
                                     <action selector="delete_place:" destination="GIl-vH-iFT" eventType="touchUpInside" id="yLo-Bx-5ge"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1n-9e-Hvj">
+                                <rect key="frame" x="15" y="258" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.78015428781509399" green="0.78014558553695679" blue="0.80101794004440308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="N58-di-fVt" firstAttribute="trailing" secondItem="iSp-Jd-rQV" secondAttribute="trailing" constant="10" id="2kj-wO-EpY"/>
@@ -307,8 +335,11 @@
                             <constraint firstItem="6vC-YJ-bbz" firstAttribute="top" secondItem="Fww-O8-K6R" secondAttribute="bottom" constant="5" id="rbB-CF-SyD"/>
                             <constraint firstItem="Ya9-hc-Wtc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7gg-c1-kkx" secondAttribute="trailing" id="rkH-73-yGP"/>
                             <constraint firstItem="iSp-Jd-rQV" firstAttribute="height" secondItem="Xb2-fs-0ol" secondAttribute="height" id="syx-ah-eDJ"/>
+                            <constraint firstItem="y1n-9e-Hvj" firstAttribute="leading" secondItem="HwK-co-PeE" secondAttribute="leading" constant="5" id="tYe-Iu-HpW"/>
                             <constraint firstItem="N58-di-fVt" firstAttribute="bottom" secondItem="g5M-Xl-Qtp" secondAttribute="bottom" constant="10" id="wBa-YV-CJp"/>
                             <constraint firstItem="HwK-co-PeE" firstAttribute="leading" secondItem="N58-di-fVt" secondAttribute="leading" constant="10" id="wlv-cW-Lf2"/>
+                            <constraint firstItem="y1n-9e-Hvj" firstAttribute="top" secondItem="HwK-co-PeE" secondAttribute="top" constant="8" id="xLt-4r-fKU"/>
+                            <constraint firstItem="N58-di-fVt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y1n-9e-Hvj" secondAttribute="trailing" symbolic="YES" id="xUh-ER-Vbu"/>
                             <constraint firstItem="N58-di-fVt" firstAttribute="trailing" secondItem="HwK-co-PeE" secondAttribute="trailing" constant="10" id="xiv-Ne-51U"/>
                             <constraint firstItem="iSp-Jd-rQV" firstAttribute="top" secondItem="N58-di-fVt" secondAttribute="top" constant="10" id="zb8-Gk-QJa"/>
                             <constraint firstItem="73P-xK-Vi0" firstAttribute="bottom" secondItem="9ok-ty-mbO" secondAttribute="bottom" id="zg6-tL-QdK"/>
@@ -327,6 +358,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="delete_place_bt" destination="g5M-Xl-Qtp" id="MHS-MI-sHg"/>
+                        <outlet property="descPlaceholder" destination="y1n-9e-Hvj" id="rmS-NN-ya7"/>
                         <outlet property="description_txt" destination="HwK-co-PeE" id="6Te-LL-uPs"/>
                         <outlet property="discount_txt" destination="vnZ-Oe-ZvB" id="WXA-Tg-qja"/>
                         <outlet property="foto_lbl" destination="73P-xK-Vi0" id="HGo-PB-kl1"/>
@@ -757,6 +789,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cRi-WP-rax"/>
-        <segue reference="XmL-U9-dG0"/>
+        <segue reference="DZW-9g-puH"/>
     </inferredMetricsTieBreakers>
 </document>

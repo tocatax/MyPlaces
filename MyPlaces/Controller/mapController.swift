@@ -15,6 +15,7 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
     var locationManager = CLLocationManager()
     var placeSelected: Place?
     @IBOutlet weak var mapView: MKMapView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,11 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
         // CASA: 41,603073 · 2,620441
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         mapView.delegate = self
+        
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(manager.places)
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,8 +35,6 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
         
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(manager.places)
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,5 +50,11 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
             placeSelected = manager.places.filter({$0.name == view.annotation?.title}).first
             performSegue(withIdentifier: "ShowDetailFromMap", sender: view.annotation)
         }
+    }
+    
+    @IBAction func userLocationBt(_ sender: Any) {
+        let userLocation = mapView.userLocation.coordinate
+        let Region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 1_100, longitudinalMeters: 1_100)
+        mapView.setRegion(Region, animated: true)
     }
 }
