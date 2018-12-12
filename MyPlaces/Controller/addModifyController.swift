@@ -48,10 +48,9 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //discount_txt.delegate = self
+        discount_txt.delegate = self
         description_txt.delegate = self
         
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         place_img.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
         mapView_bt.layer.borderColor = UIColor(red: 0.77, green: 0.77, blue: 0.77, alpha: 1.0).cgColor
         foto_lbl.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -59,7 +58,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
         
         imagePicker.delegate = self
 
-        //Afegim un avisador pq quan piquem fora els textfield amagi el teclat
+        // Afegim un avisador pq quan piquem fora els textfield amagi el teclat
         let hideKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardAction))
         view.addGestureRecognizer(hideKeyboard)
         
@@ -115,16 +114,11 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     // TextFiled DELEGATE
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//print(textField.text)
-//        if let newtxt = Int(textField.text!), newtxt <= 100 {
-//print(newtxt)
-//            discount_txt.text = "\(newtxt)"
-//        }else{
-//            discount_txt.text = "0"
-//        }
-//        return true
-//    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var currentString: NSString = textField.text! as NSString
+        currentString = currentString.replacingCharacters(in: range, with: string) as NSString
+        return currentString.length <= 3
+    }
     
     @IBAction func save_place(_ sender: Any) {
         if (name_txt.text == "") {
@@ -148,12 +142,8 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     // Popup per sel.leccionar foto desde càmara o galeria
     @IBAction func change_img_bt(_ sender: Any) {
         let alert = UIAlertController(title: "Seleccione imagen", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
-            self.openCamera()
-        }))
-        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
-            self.openGallary()
-        }))
+        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in self.openCamera()}))
+        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in self.openGallary()}))
         alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -183,7 +173,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height - 200
+                self.view.frame.origin.y -= keyboardSize.height - 65
             }
         }
     }

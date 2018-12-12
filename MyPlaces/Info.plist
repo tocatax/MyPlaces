@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDocumentTypes</key>
@@ -68,11 +70,11 @@
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<false/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>La App necesita utilizar el GPS</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>La App necesita utilizar el GPS</string>
 	<key>NSCameraUsageDescription</key>
 	<string>La App necesita utilizar la cámara</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>La App necesita utilizar el GPS</string>
 </dict>
 </plist>

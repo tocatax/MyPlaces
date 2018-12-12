@@ -7,4 +7,5 @@ target 'MyPlaces' do
 
   # Pods for MyPlaces
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
 end

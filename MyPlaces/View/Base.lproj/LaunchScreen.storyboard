@@ -28,10 +28,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="W5X-Fs-Uoj">
-                                <rect key="frame" x="127.5" y="145.5" width="120" height="120"/>
+                                <rect key="frame" x="114" y="120" width="147" height="146.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="W5X-Fs-Uoj" secondAttribute="height" multiplier="1:1" id="kvO-wc-sD2"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toni Casas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsK-uk-ciT">
-                                <rect key="frame" x="150.5" y="634" width="74.5" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© Toni Casas 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsK-uk-ciT">
+                                <rect key="frame" x="123" y="639" width="129" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -40,14 +43,15 @@
                         <constraints>
                             <constraint firstItem="S2k-fM-o5S" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="7Qt-kO-vzM"/>
                             <constraint firstItem="FsK-uk-ciT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Mye-SZ-iTG"/>
-                            <constraint firstItem="Muh-aT-moC" firstAttribute="top" secondItem="W5X-Fs-Uoj" secondAttribute="bottom" constant="50" id="Szl-30-jUo"/>
                             <constraint firstItem="S2k-fM-o5S" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="TkL-Va-OSk"/>
                             <constraint firstItem="Muh-aT-moC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UMp-gB-UbY"/>
                             <constraint firstItem="S2k-fM-o5S" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="YC3-xo-Asv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FsK-uk-ciT" secondAttribute="bottom" constant="15" id="gW2-YM-DPl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FsK-uk-ciT" secondAttribute="bottom" constant="10" id="gW2-YM-DPl"/>
                             <constraint firstItem="W5X-Fs-Uoj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="idg-fw-84f"/>
                             <constraint firstItem="Muh-aT-moC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="m4e-Lw-J5l"/>
+                            <constraint firstItem="W5X-Fs-Uoj" firstAttribute="height" secondItem="S2k-fM-o5S" secondAttribute="height" multiplier="0.22" id="nel-kW-Gcj"/>
                             <constraint firstItem="S2k-fM-o5S" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="qma-LH-Sze"/>
+                            <constraint firstItem="Muh-aT-moC" firstAttribute="top" secondItem="W5X-Fs-Uoj" secondAttribute="bottom" constant="49" id="yCo-4j-dgC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

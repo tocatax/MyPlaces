@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAuth
 
 class SecondViewController: UIViewController, MKMapViewDelegate {
 
@@ -20,8 +21,6 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // CASA: 41,603073 · 2,620441
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         mapView.delegate = self
         
         mapView.removeAnnotations(mapView.annotations)
@@ -50,6 +49,14 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
             placeSelected = manager.places.filter({$0.name == view.annotation?.title}).first
             performSegue(withIdentifier: "ShowDetailFromMap", sender: view.annotation)
         }
+    }
+    
+    @IBAction func logoutBt(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            print("Logout")
+            performSegue(withIdentifier: "unwindToLogin", sender: nil)
+        } catch {}
     }
     
     @IBAction func userLocationBt(_ sender: Any) {
