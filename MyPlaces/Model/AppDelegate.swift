@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 
@@ -23,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Inicialitzador de Firebase
         FirebaseApp.configure()
+        
+        // Notifiacions Locals
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            print("Permís: (\(granted)")
+        }
+        
         
         // Comandes per a llegir les dade de l'arxiu JSON
         let docsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

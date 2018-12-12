@@ -43,9 +43,7 @@ class LocationController: UIViewController, UINavigationControllerDelegate, CLLo
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func guardar_bt(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToAddModify", sender: coordinates)
-    }
+    @IBAction func guardar_bt(_ sender: Any) {}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToAddModify" {
