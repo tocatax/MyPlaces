@@ -99,6 +99,7 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func unwindToAddModifyController(_ sender: UIStoryboardSegue){}
     
     @IBAction func isTouristic(_ sender: UISwitch) {
+        if (!sender.isOn) { discount_txt.text = ""}
         discount_txt.isEnabled = sender.isOn
     }
     
@@ -115,10 +116,22 @@ class addModifyContoller: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // TextFiled DELEGATE
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var currentString: NSString = textField.text! as NSString
-        currentString = currentString.replacingCharacters(in: range, with: string) as NSString
-        return currentString.length <= 3
+        // Sempre volem permetre esborrar
+        if string.isEmpty { return true }
+        
+        // Mirem com quedaria el contingut si acceptéssim els canvis
+        let oldText = textField.text as NSString?
+        let newText = oldText?.replacingCharacters(in: range, with: string)
+        
+        // Si el que quedaria és un enter entre 0 i 100 ho posem
+        if let text = newText, let discount = Int(text) {
+            if 0...100 ~= discount {
+                textField.text = "\(discount)"
+            }
+        }
+        return false
     }
+
     
     @IBAction func save_place(_ sender: Any) {
         if (name_txt.text == "") {
