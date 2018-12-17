@@ -46,7 +46,7 @@ class DetailController: UIViewController {
             if(place.image != nil){
                 place_img.image = UIImage(data: place.image!)
             }
-            let Region = MKCoordinateRegion(center: place.location, latitudinalMeters: 10_000, longitudinalMeters: 10_000)
+            let Region = MKCoordinateRegion(center: place.location, latitudinalMeters: 1_000, longitudinalMeters: 1_000)
             mapView.setRegion(Region, animated: true)
             mapView.addAnnotation(place)
         }

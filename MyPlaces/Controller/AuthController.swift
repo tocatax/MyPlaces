@@ -57,6 +57,7 @@ class AuthController: UIViewController {
                     self.repetirPasswordTxt.text = ""
                     self.repetirPasswordTxt.isHidden = true
                     self.avisoLbl.text = "Usuario creado correctamente"
+                    self.performSegue(withIdentifier: "enterApp", sender: nil)
                 }
             }else{
                 self.avisoLbl.text = "Debe introducir todos los datos"
